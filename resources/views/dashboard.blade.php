@@ -17,13 +17,13 @@
 
     <title>Hello, world!</title>
     <style>
-        #body{
+        /* #body{
             background-image: url('img/background.png');
             background-color: #f1f1f1;
             background-repeat: no-repeat;
             background-size: contain;
             background-size: cover;
-        }
+        } */
     </style>
 </head>
 

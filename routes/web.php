@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,4 +27,6 @@ Route::get('tambah/{id_masakan}', [DashboardController::class, 'addToCart']);
 
 Route::patch('update-keranjang', [DashboardController::class, 'update']);
 
-Route::delete('remove-keranjang', [DashboardController::class, 'remove']);
+Route::delete('remove-keranjang', [DashboardController::class, 'remove'])->name('hapus');
+
+Route::get('order', [OrderController::class, 'addOrder'])->name('order');

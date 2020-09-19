@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\masakan;
+
 use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
@@ -20,7 +21,9 @@ class DashboardController extends Controller
 
     public function cart()
     {
-        return view('user.cart');
+        $idpes = DB::table('pesanans')->get();
+        $menu = DB::table('masakans')->get();
+        return view('user.cart', ['id_pes' => $idpes], ['menu' => $menu]);
     }
 
     public function addToCart($id_masakan)
@@ -39,6 +42,7 @@ class DashboardController extends Controller
             $cart = [
                 $id_masakan => [
                     "nama_masakan" => $product->nama_masakan,
+                    "id_masakan" => $product->id_masakan,
                     "jumlah" => 1,
                     "harga" => $product->harga,
                     "gambar" => $product->gambar
@@ -63,6 +67,7 @@ class DashboardController extends Controller
         // // if item not exist in cart then add to cart with quantity = 1
         $cart[$id_masakan] = [
             "nama_masakan" => $product->nama_masakan,
+            "id_masakan" => $product->id_masakan,
             "jumlah" => 1,
             "harga" => $product->harga,
             "gambar" => $product->gambar
@@ -88,11 +93,11 @@ class DashboardController extends Controller
 
     public function remove(Request $request)
     {
-        if($request->id) {
+        if ($request->id) {
 
             $cart = session()->get('cart');
 
-            if(isset($cart[$request->id])) {
+            if (isset($cart[$request->id])) {
 
                 unset($cart[$request->id]);
 
