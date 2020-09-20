@@ -13,10 +13,16 @@
         <li class="nav-item">
             <?php 
             $pesanan_utama = \App\Models\pesanan::where('id_user', Session::get('id_user'))->where('status',"belum")->first();
+            if(!empty($pesanan_utama))
+            {
             $notif = \App\Models\detail_pesanan::where('id_pesan', $pesanan_utama->id_pesan)->count();
+            }
             ?>
             <a class="nav-link " href="{{ route('checkout') }}" id="alertsDropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="fas fa-shopping-cart"><span class="badge badge-danger">{{$notif}}</span></i>
+                <i class="fa fa-shopping-cart"></i>
+                @if(!empty($notif))
+                <span class="badge badge-danger">{{ $notif }}</span>
+                @endif
             </a>
         </li>
         <div class="topbar-divider d-none d-sm-block"></div>

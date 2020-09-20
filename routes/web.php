@@ -32,18 +32,20 @@ Route::get('/', [DashboardController::class, 'index'])->name('index');
 
 Route::post('order/{id_masakan}', [OrderController::class, 'addOrder']);
 
-Route::get('/checkout', [OrderController::class, 'checkout'])->name('checkout');
-Route::get('/hapus/{id_masakan}', [OrderController::class, 'delete']);
+Route::get('checkout', [OrderController::class, 'checkout'])->name('checkout');
+Route::get('confirm', [OrderController::class, 'confirm']);
+
+Route::delete('hapus/{id_masakan}', [OrderController::class, 'delete']);
 
 
-Route::get('/admin.index', [AdminController::class, 'index'])->name('admin.index');
-Route::resource('/admin', AdminController::class);
+Route::get('admin.index', [AdminController::class, 'index'])->name('admin.index');
+Route::resource('admin', AdminController::class);
 
 
-Route::get('/register', [AuthController::class, 'getRegister'])->name('register')->middleware('guest');
-Route::post('/register', [AuthController::class, 'postRegister'])->middleware('guest');
+Route::get('register', [AuthController::class, 'getRegister'])->name('register')->middleware('guest');
+Route::post('register', [AuthController::class, 'postRegister'])->middleware('guest');
 
-Route::get('/login', [AuthController::class, 'getLogin'])->name('login')->middleware('guest');
-Route::post('/login', [AuthController::class, 'postLogin'])->middleware('guest');
+Route::get('login', [AuthController::class, 'getLogin'])->name('login')->middleware('guest');
+Route::post('login', [AuthController::class, 'postLogin'])->middleware('guest');
 
-Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('logout', [AuthController::class, 'logout'])->name('logout');

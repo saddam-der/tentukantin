@@ -66,14 +66,37 @@ class OrderController extends Controller
     public function checkout()
     {
         $pesanan = pesanan::where('id_user',Session::get('id_user'))->where('status','belum')->first();
-        $pesanan_detail = [];
-        $pesanan_detail = detail_pesanan::where('id_pesan', $pesanan->id_pesan)->get();
-
-        return view('kasir.checkout', compact('pesanan', 'pesanan_detail'));
+        $pesanan_details = [];
+        if(!empty($pesanan))
+        {
+            $pesanan_details = detail_pesanan::where('id_pesan', $pesanan->id_pesan)->get();
+        }
+        return view('kasir.checkout', compact('pesanan', 'pesanan_details'));
     }
 
     public function delete($id_masakan)
     {
-        $pesanan_detail = detail_pesanan::where('')
+        $pesanan_detail = detail_pesanan::where('id_masakan', $id_masakan)->first();
+
+        $pesanan = pesanan::where('id_pesan', $pesanan_detail->id_pesan)->first();    
+        
+        $pesanan->jumlah_harga = $pesanan->jumlah_harga-$pesanan_detail->jumlah_harga;
+        $pesanan->update();
+
+        
+        $pesanan_detail->delete();
+
+        alert()->error('Pesanan Sukses Di hapus', 'Success');
+        return redirect('checkout');
+    }
+
+    public function confirm()
+    {
+        $pesanan = pesanan::where('id_user',Session::get('id_user'))->where('status','belum')->first();
+        $pesanan->status = "selesai";
+        $pesanan->update();
+
+        alert()->error('Pesanan Sukses Check Out', 'Success');
+        return redirect('checkout');
     }
 }
