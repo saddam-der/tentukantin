@@ -8,5 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class pesanan extends Model
 {
     use HasFactory;
-    protected $primaryKey = 'id_pesanan';
+    public $timestamps = false;
+    protected $primaryKey = 'id_pesan';
+
+    protected $fillable = [
+        'no_meja',
+        'tanggal_pesan',
+        'id_user',
+        'jumlah_harga',
+        'status',
+    ];
 }
