@@ -3,7 +3,9 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\HistoriController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\PetugasController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -41,11 +43,19 @@ Route::delete('hapus/{id_masakan}', [OrderController::class, 'delete']);
 Route::get('admin.index', [AdminController::class, 'index'])->name('admin.index');
 Route::resource('admin', AdminController::class);
 
+Route::get('admin.petugas', [PetugasController::class, 'index'])->name('admin.petugas');
+Route::resource('petugas', PetugasController::class);
 
-Route::get('register', [AuthController::class, 'getRegister'])->name('register')->middleware('guest');
-Route::post('register', [AuthController::class, 'postRegister'])->middleware('guest');
+Route::get('histori', [HistoriController::class, 'index']);
+Route::get('histori/{id_pesan}', [HistoriController::class, 'detail']);
+Route::get('detail/{id_pesan}', [HistoriController::class, 'cetak_pdf']);
 
-Route::get('login', [AuthController::class, 'getLogin'])->name('login')->middleware('guest');
-Route::post('login', [AuthController::class, 'postLogin'])->middleware('guest');
+
+//Auth
+Route::get('register', [PetugasController::class, 'getRegister'])->name('register');
+Route::post('register', [PetugasController::class, 'postRegister']);
+
+Route::get('login', [AuthController::class, 'getLogin'])->name('login');
+Route::post('login', [AuthController::class, 'postLogin']);
 
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');

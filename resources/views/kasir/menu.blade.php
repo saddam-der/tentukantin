@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
         @foreach ($menu as $item)
-
+        @if($item->status == 'ada')
         <div class="col-lg-4 col-md-6 mb-4">
             <div class="card h-100">
                 <a href="#"><img class="card-img-top" width="100px" height="200px" src="" alt=""></a>
@@ -21,7 +21,7 @@
                 </div>
             </div>
         </div>
-
+        @endif
         <!-- Modal -->
         <div class="modal fade" id="view_{{$item->id_masakan}}" tabindex="-1" aria-labelledby="exampleModalLabel"
             aria-hidden="true">

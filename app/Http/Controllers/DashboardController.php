@@ -12,7 +12,7 @@ class DashboardController extends Controller
     //
     public function index(Request $request)
     {
-        $menu = DB::table('masakans')->paginate(3);
+        $menu = DB::table('masakans')->paginate(6);
         if ($request->ajax()) {
             return view('kasir.menu', compact('menu'));
         }

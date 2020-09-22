@@ -18,6 +18,11 @@
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{  route('admin.petugas') }}">
+            <i class="fa fa-users"></i>
+            <span>Tambah Petugas</span></a>
+    </li>
     @endif
     @if(Session::get('level')=="kasir")
     <li class="nav-item">
@@ -29,10 +34,11 @@
     <hr class="sidebar-divider">
 
     <!-- Nav Item - Tables -->
+    
     <li class="nav-item">
-        <a class="nav-link" href="tables.html">
-            <i class="fas fa-fw fa-user"></i>
-            <span>Profile</span></a>
+        <a class="nav-link" href="{{ url('histori') }}">
+            <i class="fa fa-history"></i>
+            <span>Histori</span></a>
     </li>
 
     <!-- Divider -->

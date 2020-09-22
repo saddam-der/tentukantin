@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\masakan;
+use App\Models\User;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -31,6 +32,12 @@ class AdminController extends Controller
     {
         //
         return view('admin.create');
+    }
+
+    public function petugas_create()
+    {
+        //
+        return view('admin.petugascreate');
     }
 
     /**

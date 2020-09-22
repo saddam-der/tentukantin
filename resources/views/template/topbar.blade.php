@@ -10,6 +10,7 @@
     <!-- Topbar Navbar -->
     <ul class="navbar-nav ml-auto">
         <!-- Nav Item - Alerts -->
+        @if(Session::get('level')=="kasir")
         <li class="nav-item">
             <?php 
             $pesanan_utama = \App\Models\pesanan::where('id_user', Session::get('id_user'))->where('status',"belum")->first();
@@ -25,6 +26,7 @@
                 @endif
             </a>
         </li>
+        @endif
         <div class="topbar-divider d-none d-sm-block"></div>
 
         <!-- Nav Item - User Information -->
@@ -32,7 +34,7 @@
             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Session::get('name') }}</span>
-                <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
+                <img class="img-profile rounded-circle" src="{{  asset('storage/' . Session::get('foto')) }}">
             </a>
             <!-- Dropdown - User Information -->
             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">

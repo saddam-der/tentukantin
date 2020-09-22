@@ -9,6 +9,7 @@ use Illuminate\Support\Carbon;
 use App\Models\detail_pesanan;
 use App\Models\masakan;
 use App\Models\pesanan;
+
 use UxWeb\SweetAlert\SweetAlert;
 
 class OrderController extends Controller
@@ -26,10 +27,10 @@ class OrderController extends Controller
             //simpan ke tbl pesanan
             $pesanan = new pesanan;
             $pesanan->id_user = Session::get('id_user');
-            $pesanan->tanggal_pesan = $tanggal;
-            $pesanan->no_meja = 2;
+            $pesanan->tanggal_pesan = $tanggal;            
             $pesanan->status = "belum";
             $pesanan->jumlah_harga = 0;
+            $pesanan->total_bayar = 0;
             $pesanan->save();
         }
         //
@@ -90,13 +91,15 @@ class OrderController extends Controller
         return redirect('checkout');
     }
 
-    public function confirm()
+    public function confirm(Request $request)
     {
         $pesanan = pesanan::where('id_user',Session::get('id_user'))->where('status','belum')->first();
+        $pesanan->total_bayar = $request->uang;
         $pesanan->status = "selesai";
         $pesanan->update();
 
         alert()->error('Pesanan Sukses Check Out', 'Success');
         return redirect('checkout');
     }
+
 }

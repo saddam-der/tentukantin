@@ -55,9 +55,7 @@
                                             
                                     </form>
                                     <hr>
-                                    <div class="text-center">
-                                        <a class="small" href="{{route('register')}}">Buat Akun!</a>
-                                    </div>
+                                    
                                 </div>
                             </div>
                         </div>

@@ -12,7 +12,9 @@
                             <h3> <i class="fas fa-shopping-cart"> Checkout </i> </h3>
                         </div>
                         @if(!empty($pesanan))
-                        <div class="ml-auto p-2">Tanggal Pesan : {{ $pesanan->tanggal_pesan }}</div>
+                    
+                        <div class="ml-auto p-2 text-center">Tanggal Pesan : {{ $pesanan->tanggal_pesan }} <br> 
+                            <a href="{{ url('detail/') }}/{{ $pesanan->id_pesan }}" class="btn btn-info my-2">Cetak PDF</a></div>
                     </div>
                 </div>
                 <div class="card-body">
@@ -23,8 +25,8 @@
                                 <th>Nama Masakan</th>
                                 <th class="text-center">Jumlah</th>
                                 <th class="text-center">Harga</th>
-                                <th class="text-left">Total Harga</th>
-                                <th class="text-center" style="width: 160px">Aksi</th>
+                                <th class="text-center">Total Harga</th>
+                                
                             </tr>
                         </thead>
                         <tbody>
@@ -35,24 +37,16 @@
                                 <td>{{$pesanan_detail->masakan->nama_masakan}}</td>
                                 <td class="text-center">{{$pesanan_detail->jumlah}}</td>
                                 <td class="text-center">Rp. {{ number_format($pesanan_detail->masakan->harga)}}</td>
-                                <td>Rp. {{ number_format($pesanan_detail->jumlah_harga)}}</td>
-                                <td class="text-center">
-                                    <form action=" {{url('hapus')}}/{{ $pesanan_detail->id_masakan }} " method="post">
-                                        @csrf
-                                        {{ method_field('DELETE') }}
-                                        <button type="submit" class="btn btn-danger"> <i class="fa fa-trash"> Hapus</i>
-                                        </button>
-                                    </form>
-                                </td>
+                                <td class="text-center">Rp. {{ number_format($pesanan_detail->jumlah_harga)}}</td>
                             </tr>
                             @endforeach
                             <tr>
                                 <td colspan="4" class="text-right"> <strong> Total Harga : </strong></td>
-                                <td>Rp. {{ number_format($pesanan->jumlah_harga) }} </td>
-                                <td class="text-center">
-                                    <a href="" class="btn btn-success" data-toggle="modal" data-target="#modalconfirm">
-                                        <i class="fa fa-shopping-cart"> Check Out</i></a>
-                                </td>
+                                <td class="text-center">Rp. {{ number_format($pesanan->jumlah_harga) }} </td>
+                            </tr>
+                            <tr>
+                                <td colspan="4" class="text-right"> <strong> Total Bayar : </strong></td>
+                                <td class="text-center">Rp. {{ number_format($pesanan->total_bayar) }} </td>
                             </tr>
                         </tbody>
                     </table>
