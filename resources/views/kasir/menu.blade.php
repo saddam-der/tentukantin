@@ -7,7 +7,7 @@
         @if($item->status == 'ada')
         <div class="col-lg-4 col-md-6 mb-4">
             <div class="card h-100">
-                <a href="#"><img class="card-img-top" width="100px" height="200px" src="" alt=""></a>
+                <a href="#"><img class="card-img-top" width="100px" height="200px" src=" {{ asset('storage/' . $item->gambar )}} " alt=""></a>
                 <div class="card-body">
                     <h4 class="card-title">
                         <a href="#" data-toggle="modal"
@@ -17,7 +17,7 @@
                     <p class="card-text"></p>
                 </div>
                 <div class="card-footer">
-                    <small class="text-muted"> tesa</small>
+                    
                 </div>
             </div>
         </div>

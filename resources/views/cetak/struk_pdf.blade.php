@@ -25,11 +25,6 @@
     <h1>STRUK PEMBAYARAN</h1> <br><br><br>
     <table class="table1">
         <tr>
-            <th>Nama</th>
-            <td>:</td>
-            
-        </tr>
-        <tr>
             <th>Tanggal Pesan</th>
             <td>:</td>
             <td>{{ $pesanan->tanggal_pesan }}</td>

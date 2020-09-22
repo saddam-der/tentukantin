@@ -31,23 +31,14 @@ class AuthController extends Controller
                 return redirect()->route('index');
             } else if($data->level == "admin"){
                 return redirect()->route('admin.index');
+            } else if($data->level == "owner"){
+                return redirect('histori');
             }
         }
         else{
             return redirect()->route('login');
         }                                                                                                                                                                     
-    }
-
-    // public function getRegister()
-    // {
-    //     return view('auth/register');
-    // }
-
-    
-
-    
-
-    
+    } 
 
     public function logout()
     {

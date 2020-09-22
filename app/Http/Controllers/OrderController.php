@@ -60,7 +60,7 @@ class OrderController extends Controller
         $pesanan->jumlah_harga = $pesanan->jumlah_harga + $masakan->harga*$request->jumlah;
         $pesanan->update();
 
-        alert()->success('Pesanan Berhasil Masuk Keranjang', 'Optional Title');
+        alert()->success('Pesanan Berhasil Masuk Keranjang', 'Success');
         return redirect()->route('index');
     }
 
@@ -78,7 +78,6 @@ class OrderController extends Controller
     public function delete($id_masakan)
     {
         $pesanan_detail = detail_pesanan::where('id_masakan', $id_masakan)->first();
-
         $pesanan = pesanan::where('id_pesan', $pesanan_detail->id_pesan)->first();    
         
         $pesanan->jumlah_harga = $pesanan->jumlah_harga-$pesanan_detail->jumlah_harga;
@@ -96,10 +95,13 @@ class OrderController extends Controller
         $pesanan = pesanan::where('id_user',Session::get('id_user'))->where('status','belum')->first();
         $pesanan->total_bayar = $request->uang;
         $pesanan->status = "selesai";
+        $id_pesan = $pesanan->id_pesan;
         $pesanan->update();
 
-        alert()->error('Pesanan Sukses Check Out', 'Success');
-        return redirect('checkout');
+        
+
+        alert()->success('Pesanan Sukses Check Out', 'Success');
+        return redirect('histori/' . $id_pesan);
     }
 
 }
