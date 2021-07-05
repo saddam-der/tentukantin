@@ -37,12 +37,12 @@
                             <div class="col-lg-6 offset-3">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Selamat Datang Kemabali!</h1>
+                                        <h1 class="h4 text-gray-900 mb-4">Selamat Datang Kembali!</h1>
                                     </div>
                                     <form class="user" method="POST" action="{{ route('login') }}">
                                         {{ csrf_field() }} 
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-user"
+                                            <input type="text" class="form-control form-control-user"
                                                 id="exampleInputEmail" aria-describedby="emailHelp"
                                                 placeholder="Masukan Email ..." name="email">
                                         </div>
